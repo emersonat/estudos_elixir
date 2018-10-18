@@ -1,20 +1,38 @@
 
-        ####### LISTAS #####
+        #########################################################################################
+        ############################### LISTAS ##################################################
+        #########################################################################################
         lista = ["laranja","abacaxi", "uva" ]
+        lista_sem_uva = lista -- [ "uva" ] 
+        lista_com_abacaxi = lista ++ [ "abacaxi" ] 
 
         # buscando por index
         Enum.at(lista, 1)
 
-        #iterando lista 01
+        #iterando lista 
         Enum.each( lista , fn x -> IO.puts x end)
         lista |> Enum.map(&(IO.puts &1))
 
-        ######## listas com chave e valor
+        #
+        # keywords list
+        # - pouco otimizada
+        # - por debaixo dos panos vira uma lista de tuplas 
+        # - chaves devem ser somente atoms
+        #
         lista_chave_valor = [nome: "emerson", idade: 40, profissao: "dev" ]
 
         #acessando um elemento da lista pela chave
+        IO.puts lista_chave_valor[:nome]
         Access.get(lista_chave_valor, :nome)
         lista_chave_valor |> Access.get(:nome) |> IO.puts
+        
+        ## adicionando e removendo  chave/valor com operador de listas
+        lista_chave_valor = lista_chave_valor ++ [cargo: "gerente"]
+        lista_chave_valor = lista_chave_valor -- [cargo: "gerente"]
+
+
+
+
 
 
 
