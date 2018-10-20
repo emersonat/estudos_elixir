@@ -3,20 +3,20 @@
         ############################### LISTAS ##################################################
         #########################################################################################
         lista = ["laranja","abacaxi", "uva" ]
-        lista_sem_uva = lista -- [ "uva" ] 
-        lista_com_abacaxi = lista ++ [ "abacaxi" ] 
+        lista_sem_uva = lista -- [ "uva" ]
+        lista_com_abacaxi = lista ++ [ "abacaxi" ]
 
         # buscando por index
         Enum.at(lista, 1)
 
-        #iterando lista 
+        #iterando lista
         Enum.each( lista , fn x -> IO.puts x end)
         lista |> Enum.map(&(IO.puts &1))
 
         #
         # keywords list
         # - pouco otimizada
-        # - por debaixo dos panos vira uma lista de tuplas 
+        # - por debaixo dos panos vira uma lista de tuplas
         # - chaves devem ser somente atoms
         #
         lista_chave_valor = [nome: "emerson", idade: 40, profissao: "dev" ]
@@ -25,10 +25,14 @@
         IO.puts lista_chave_valor[:nome]
         Access.get(lista_chave_valor, :nome)
         lista_chave_valor |> Access.get(:nome) |> IO.puts
-        
+
         ## adicionando e removendo  chave/valor com operador de listas
         lista_chave_valor = lista_chave_valor ++ [cargo: "gerente"]
         lista_chave_valor = lista_chave_valor -- [cargo: "gerente"]
+
+        # contanis
+        manuela in ["emerson","camila"] #false
+        manuela in ["emerson","camila","manuela"] #true
 
 
 
