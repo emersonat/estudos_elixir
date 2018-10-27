@@ -37,6 +37,87 @@
 
 
 
+##################################################################################
+##################### utilizando funcoes ENUM       ##############################
+##################################################################################
+lista_palavras = ["there","was","a","crooked","man"]
+# converte para lista
+lista_numero = Enum.to_list 1..10
+
+#concat listas
+Enum.concat [1,2,3], [4,5,6]
+Enum.concat [1,2,3], 'abc'
+
+# interando e aplicando funcao em cada item da lista
+Enum.map(lista_numero, &String.duplicate("*", &1) )
+
+# filtrando lista
+Enum.filter(lista_numero, &(&1 > 5) )
+Enum.at lista_numero,20,:atom_retornado_quando_nao_achar_indice
+
+# sort
+Enum.sort lista_palavras
+Enum.sort(lista_palavras, &(String.length(&1) <= String.length(&2)) )
+
+#max
+Enum.max lista_numero,
+Enum.max_by lista_palavras, &(String.length/1)
+
+#split a collection
+Enum.take lista_numero,2 # obterm os dois primeiros items
+Enum.take_every lista_numero, 2 # obtem items de dois em dois indices
+
+# join
+Enum.join(lista_numero) #junta todos os itens de uma lista transformando em uma string
+Enum.join(lista_numero, " - ") # aplica uma string entre os items da lista
+
+
+#predicate operations
+Enum.all?(lista_numero, &(&1 < 20)) # todos menores que 20 TRUE
+Enum.any?(lista_numero, &(&1 == 5)) # algum igual a 5 TRUE
+Enum.member? lista_numero,10 #pertence a lista
+
+# Merge de listas -> criar uma lista com tuplas
+# EXEMPLO DE SAIDA: [{1, "there"}, {2, "was"}, {3, "a"}, {4, "crooked"}, {5, "man"}]
+Enum.zip(lista_numero,lista_palavras)
+
+# similar ao merge porem as tuplas contem os indices
+# exemplo de saida: [{"there", 0}, {"was", 1}, {"a", 2}, {"crooked", 3}, {"man", 4}]
+Enum.with_index(lista_palavras)
+
+#Reduce
+Enum.reduce(1..100, &(&1 + &2) )
+
+# exemplo maior palavra
+Enum.reduce(lista_palavras,
+  fn palavra,maior_palavra ->
+
+    if String.length(palavra) > String.length(maior_palavra) do
+      palavra
+    else
+      maior_palavra
+    end
+
+  end)
+ # tamnho da maior palavra
+ Enum.reduce(lista_palavras,0,
+    fn word,longest ->
+
+      if String.length(word) > longest,
+        do: String.length(word),
+        else: longest
+
+    end)
+
+
+
+
+
+
+
+
+
+
 
 
 
